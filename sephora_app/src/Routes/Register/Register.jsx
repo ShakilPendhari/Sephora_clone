@@ -16,7 +16,9 @@ const Register = () => {
   
 
   useEffect(()=>{
-    console.log(wid)
+
+    console.log( wid )
+
   const updateSize = ()=>{
     if(wid>=280 && wid<=480){
       setStyle((v=0)=>v+mobile)
