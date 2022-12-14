@@ -1,0 +1,13 @@
+.globe{
+    text-align: right;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(141, 36, 36);
+    color:rgb(0, 0, 0);
+    font-size: 0.4rem;
+}
+
+.h2Tag{
+   font-size: 0.6rem;
+}

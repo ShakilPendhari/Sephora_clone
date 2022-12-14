@@ -1,9 +1,13 @@
 import './App.css';
+// import Home from './Routes/Home';
+import { Box } from "@chakra-ui/react"
+import Register from './Routes/Register/Register';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Box>
+      <Register/>
+    </Box>
   );
 }
 
