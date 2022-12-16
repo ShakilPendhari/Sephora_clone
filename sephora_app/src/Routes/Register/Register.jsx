@@ -19,7 +19,7 @@ const Register = () => {
         <Center height='3px' mt={3}>
            <Divider color="red" border="2" orientation='horizontal' />
         </Center>
-        <Box boxSize='200px' mt={4}>
+        <Box  boxSize='200px'  mt={4}>
   <Image src='https://www.sephora.com/img/ufe/bi/logo-beauty-insider.svg' alt='Beauty Insider' />
 </Box>
     </div>
