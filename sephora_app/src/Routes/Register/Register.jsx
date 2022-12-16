@@ -1,57 +1,27 @@
-import React, { useEffect, useState } from 'react'
 import { Heading, Center, Flex } from "@chakra-ui/react";
-import { Divider } from '@chakra-ui/react'
+import { Divider, Box , Image } from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons';
-import mobile from "./Css/Register_Mobile.module.css"
-import tab from "./Css/Register_Tab.module.css"
-import styles from "./Css/Resister_Pc.module.css"
-
 
 
 
 const Register = () => {
-  const [wid, setWid ] = useState(null);
-  const [ style, setStyle ] = useState(styles);
-
-  
-
-  useEffect(()=>{
-
-    console.log( wid )
-
-  const updateSize = ()=>{
-    if(wid>=280 && wid<=480){
-      setStyle((v=0)=>v+mobile)
-    }
-    else if( wid >= 481 && wid <= 767 )
-    {
-      setStyle((v=0)=>v+tab)
-    }
-    else{
-      setStyle((v=0)=>v+styles)
-    }
-    setWid(window.innerWidth)
-  }
-
-  window.addEventListener('resize', updateSize);
-
-  return ()=> window.removeEventListener("resize", updateSize);
-
-  }, [wid,style])
-  
-
-  
-
+ 
   return (
-    <div className={style.globe}>
-        <Flex justifyContent="space-around" alignItems="center">
-           <Heading as="h1"></Heading>
-           <Heading className={style.h2Tag} as="h2">Create an Account</Heading>
-           <CloseIcon color="red" pl="40px"/>
+    <div style={{backgroundColor:"white"}}>
+        <Flex justifyContent="space-between" alignItems="center" padding={3}>
+           <Flex flex={3} justifyContent="center">
+           <Heading fontFamily= {"Helvetica Neue Helvitica arial sans-serif"} as="h2" fontSize={17} color="black">Create an Account</Heading>
+           </Flex>
+           <Flex style={{boxSize:"borderBox", }}>
+           <CloseIcon mr="2rem" style={{boxSize:"borderBox"}} onClick={()=>console.log("Hii")} color="black"/>
+           </Flex>
         </Flex>
-        <Center height='3px' color="red">
+        <Center height='3px' mt={3}>
            <Divider color="red" border="2" orientation='horizontal' />
         </Center>
+        <Box boxSize='200px' mt={4}>
+  <Image src='https://www.sephora.com/img/ufe/bi/logo-beauty-insider.svg' alt='Beauty Insider' />
+</Box>
     </div>
   )
 }
