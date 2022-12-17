@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Heading, Flex, Select, HStack, FormControl, InputGroup, InputRightElement, VStack } from "@chakra-ui/react";
-import { Box , Image, Text, Input, Checkbox} from '@chakra-ui/react'
+import { Box , Image, Text, Input, Checkbox, Tooltip} from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons';
 import "./Register.css"
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -10,9 +10,27 @@ import "./Register.css"
 
 
 const Register = () => {
+const [ display, setDisplay] = useState(true);
+
+const handleReg = ()=>{
+    if(display)
+    {
+      setDisplay(false);
+    }
+    else{
+      setDisplay(true);
+    }
+}
+
+if(!display)
+{
+  return <div></div>
+}
+
   return (
-    <div style={{padding:"1rem"}}>
-        <Flex justifyContent="space-between" p="1rem" 
+    <div style={{padding:"1rem"}} className="reg">
+    <Box className='box'>
+    <Flex justifyContent="space-between" p="1rem" 
         borderBottom="0.1px solid rgba(173, 169, 169, 0.3)" alignItems="center" >
 
            <Flex flex={3} justifyContent="center">
@@ -26,7 +44,7 @@ const Register = () => {
               <CloseIcon 
                     // mr="2rem" 
                     style={{boxSize:"borderBox"}} 
-                    onClick={()=>console.log("Hii")} color="black"
+                    onClick={handleReg} color="black"
                     width={2.5}
                     height={2.5}
                     />
@@ -78,7 +96,18 @@ const Register = () => {
               <InputGroup>
                   <Input 
                         placeholder='Phone Number (optional)'/>
-                  <InputRightElement children={<HiOutlineInformationCircle/>}/>
+                  <InputRightElement children={<Tooltip 
+                      backgroundColor="blackAlpha.900"
+                      p="0.5rem 0.25rem 0.7rem 1rem"
+                      borderRadius={11}
+                      fontSize={12}
+                      hasArrow  
+                      label="Use your phone number for faster account lookup in store. Already gave us a phone number in store? Enter it here to merge your accounts." 
+                      placement="top">
+                   <Box>
+                      <HiOutlineInformationCircle/>
+                   </Box>
+                 </Tooltip> }/>
               </InputGroup>
           </Box>
           <HStack>
@@ -140,7 +169,18 @@ const Register = () => {
              <HStack>
              <Checkbox defaultChecked={false}></Checkbox>
                 <label>Keep me signed in</label>
-                <HiOutlineInformationCircle/>
+                <Tooltip 
+                      backgroundColor="blackAlpha.900"
+                      p="0.5rem 0.25rem 0.7rem 1rem"
+                      borderRadius={11}
+                      fontSize={12}
+                      hasArrow  
+                      label="selecting this option means you won't have to sign in as often on this device. For your security, we recommend only doing this on your personal devices." 
+                      placement="top">
+                   <Box>
+                      <HiOutlineInformationCircle/>
+                   </Box>
+                 </Tooltip> 
              </HStack>
           </Box>
           <Box display="flex">
@@ -201,6 +241,8 @@ const Register = () => {
             </Link>
             </Box>
         </VStack>
+    </Box>
+       
     </div>
   )
 }
