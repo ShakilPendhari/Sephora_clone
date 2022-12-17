@@ -1,0 +1,7 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    color-scheme: light;
+}
+select>option{
+    background-color: red;
+}
