@@ -1,21 +1,19 @@
-import { Heading, Flex, Select, HStack, FormControl } from "@chakra-ui/react";
-import { Box , Image, Text, Input} from '@chakra-ui/react'
+import React from 'react';
+import { Heading, Flex, Select, HStack, FormControl, InputGroup, InputRightElement, VStack } from "@chakra-ui/react";
+import { Box , Image, Text, Input, Checkbox} from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons';
-import { MdArrowDropDown } from "react-icons/md"
 import "./Register.css"
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom"
+import "./Register.css"
+
 
 
 const Register = () => {
-
-  const handleSubmit = ()=>{
-    console.log("hello")
-  }
-
   return (
-    <div style={{backgroundColor:"white"}}>
+    <div style={{padding:"1rem"}}>
         <Flex justifyContent="space-between" p="1rem" 
-        borderBottom="0.1px solid rgba(173, 169, 169, 0.3)" alignItems="center">
+        borderBottom="0.1px solid rgba(173, 169, 169, 0.3)" alignItems="center" >
 
            <Flex flex={3} justifyContent="center">
 
@@ -25,51 +23,70 @@ const Register = () => {
 
            <Flex style={{boxSize:"borderBox"}}>
 
-           <CloseIcon mr="2rem" style={{boxSize:"borderBox"}} onClick={()=>console.log("Hii")} color="black"/>
+              <CloseIcon 
+                    // mr="2rem" 
+                    style={{boxSize:"borderBox"}} 
+                    onClick={()=>console.log("Hii")} color="black"
+                    width={2.5}
+                    height={2.5}
+                    />
 
            </Flex>
 
         </Flex>
 
 
-        <Box  boxSize='200px'  mt={12}>
-           <Image src='https://www.sephora.com/img/ufe/bi/logo-beauty-insider.svg' alt='Beauty Insider' />
+        <Box  
+            boxSize='200px' 
+            h="40px"  
+            mt={12}>
+          <Image 
+                src='https://www.sephora.com/img/ufe/bi/logo-beauty-insider.svg' 
+                alt='Beauty Insider' />
         </Box>
 
         <Box>
-          <Text fontSize={14}>
-          Join the Beauty Insider loyalty program. Earn points, get <strong>FREE standard shipping</strong>, redeem rewards, and more.
+          <Text 
+              textAlign="left" 
+              fontSize={14}
+              m="1rem 0rem 1rem 0rem">
+             Join the Beauty Insider loyalty program. Earn points, get <strong>FREE standard shipping</strong>, redeem rewards, and more.
           </Text>
         </Box>
-        <FormControl width="100%">
+        <FormControl 
+                   width="100%"
+                   display="flex"
+                   flexDirection="column"
+                   gap="1rem">
           <HStack>
              <Input 
                   name="f_name"
-                  backgroundColor="white" 
-                  border="1.5px solid rgba(173, 169, 169)" placeholder="enter the text"/>
-              <Input 
-                  name="f_name"
-                  backgroundColor="white" 
-                  border="1.5px solid rgba(173, 169, 169)" placeholder="enter the text"/>
+                  placeholder="First Name"/>
+             <Input 
+                  name="l_name"
+                  placeholder="Last Name"/>
           </HStack>
-          <Input 
-                  name="f_name"
-                  backgroundColor="white" 
-                  border="1.5px solid rgba(173, 169, 169)" placeholder="enter the text"/>
-          <Input backgroundColor="white" border="1.5px solid rgba(173, 169, 169)" placeholder="enter the text"/>
+             <Input 
+                  name="email"
+                  placeholder='Email Address'/>
           <Box>
-          <Input 
-                  name="f_name"
-                  backgroundColor="white" 
-                  border="1.5px solid rgba(173, 169, 169)" placeholder="enter the text"/>
+             <Input 
+                  name="password"
+                  placeholder="Password (6 to 12 characters)"/>
           </Box>
           <Box>
-            <Image src="" alt="celebration"/>
-            <Text>Enter your birthdate to receive a free gift every year.</Text>
+              <InputGroup>
+                  <Input 
+                        placeholder='Phone Number (optional)'/>
+                  <InputRightElement children={<HiOutlineInformationCircle/>}/>
+              </InputGroup>
           </Box>
           <HStack>
-          <Select name="month" >
-              <option >Month</option>
+            <Image src="https://www.sephora.com/img/ufe/icons/birthday.svg" width={5} height={12} alt="celebration"/>
+            <Text as="b">Enter your birthdate to receive a free gift every year.</Text>
+          </HStack>
+          <HStack>
+          <Select name="month" placeholder="Month">
               <option value="01">January</option>
               <option value="02">February</option>
               <option value="03">March</option>
@@ -84,6 +101,7 @@ const Register = () => {
               <option value="12">December</option>
           </Select> 
           <Select name="day">
+                <option>day</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
                 <option value="03">3</option>
@@ -119,12 +137,70 @@ const Register = () => {
           </HStack>
           <Input placeholder="ZIP Code (to hear about store events near you)"/>
           <Box>
-             <Input type="checkbox"/>
-             <label>Keep me signed in</label>
-             <HiOutlineInformationCircle/>
+             <HStack>
+             <Checkbox defaultChecked={false}></Checkbox>
+                <label>Keep me signed in</label>
+                <HiOutlineInformationCircle/>
+             </HStack>
+          </Box>
+          <Box display="flex">
+            <Input 
+                 type="submit"
+                 value="Join Now"
+                 color="white"
+                 backgroundColor="black"
+                 borderRadius={25}
+                 width={220}
+                 p={0}
+                 height="3.3rem"
+                 fontWeight={600}
+                 />
           </Box>
         </FormControl>
-      
+        <VStack 
+              spacing={2} 
+              borderTop="0.5px solid rgba(173, 169, 169, 0.3)"
+              mt={5} pt={5}>
+            <Box 
+               style={{textAlign:"left"}}
+               fontSize={12}>
+            By clicking “Join Now” you acknowledge that you are a U.S. or Canada resident and (1) have read Sephora’s 
+            <Link to="">
+                 <Text 
+                     color="blue" 
+                     as='u'> Privacy Policy
+                  </Text>
+            </Link> and 
+            <Link>
+                  <Text 
+                      color="blue" 
+                      as='u'> Notice of Financial Incentive
+                  </Text>
+            </Link> , (2), agree to 
+            <Link>
+                  <Text 
+                       color="blue" 
+                       as='u'> Terms of Use , Beauty Insider Terms</Text>
+            </Link>, and to automatically receive Beauty Insider offers and notifications via email.
+            </Box>
+
+            <Box 
+                textAlign="left"
+                fontSize={12}>
+            Sephora uses Google ReCaptcha and by registering, users are subject to Google’s <Link to="">
+                 <Text 
+                     color="blue" 
+                     as='u'> Privacy Policy
+                  </Text>
+            </Link>  & 
+            <Link to="">
+                 <Text 
+                     color="blue" 
+                     as='u'> terms.
+                  </Text>
+            </Link>
+            </Box>
+        </VStack>
     </div>
   )
 }
