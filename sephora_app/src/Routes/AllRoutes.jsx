@@ -8,14 +8,14 @@ import SignUp from './SignUp/SignUp'
 const Allroutes = () => {
   return (
     <div>
-      <Routes>
+      {/* <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/Register" element={<Register/>}/>
           <Route path="/signin" element={<SignIn/>}/>
           <Route path="/signout" element={<SignUp/>}/>
           <Route path="/product" element={<Product/>}/>
           <Route path="/product/:id" element={<SingleProduct/>}/>
-      </Routes>
+      </Routes> */}
     </div>
   )
 }
