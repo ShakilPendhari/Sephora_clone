@@ -1,0 +1,1 @@
+export const SideBarInfo = ["Just Dropped","Makeup","Skincare","Fragrance","Bath & Body","Hair","Tools & Brushes"]

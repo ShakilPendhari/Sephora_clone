@@ -1,16 +1,41 @@
 import React, { useState } from 'react';
-import { Heading, Flex, Select, HStack, FormControl, InputGroup, InputRightElement, VStack } from "@chakra-ui/react";
+import { Heading, Flex, Select, HStack, FormControl, InputGroup, InputRightElement, VStack, Button } from "@chakra-ui/react";
 import { Box , Image, Text, Input, Checkbox, Tooltip} from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons';
 import "./Register.css"
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./Register.css"
 
 
+const AddData =(data)=>{
+    return fetch(`http://localhost:4040/auth`
+    ,{
+      method:"POST",
+      body:JSON.stringify(data),
+      headers:{
+         'Content-Type': 'application/json',
+      }
+    }).then((res)=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err));
+} 
+
+
+let intialValue = {
+   f_name:"",
+   l_name:"",
+   email:"",
+   password:"",
+   phone_No:"",
+   month:"",
+   day:"",
+   flag:false,
+   zip:"",
+   }
 
 const Register = () => {
 const [ display, setDisplay] = useState(true);
+const [ formstate, setFormState] = useState(intialValue);
+const  navigate  = useNavigate()
 
 const handleReg = ()=>{
     if(display)
@@ -22,9 +47,31 @@ const handleReg = ()=>{
     }
 }
 
+const handlesubmit = (e)=>{
+   e.preventDefault();
+   const { f_name, l_name, email, password, phone_No, month} = formstate;
+   if(f_name && l_name && email && password && phone_No && month)
+   {
+      AddData(formstate);
+   }
+    
+    setFormState(intialValue);
+    navigate("/");
+    setDisplay(!display);
+    localStorage.setItem("key",JSON.stringify(formstate))
+}
+
+const handleChange = (e)=>{
+   console.log(e.target.value)
+   const { value, name, type, checked } = e.target;
+   const val = type==='checkbox' ?checked : value;
+   setFormState({...formstate, [name]:val});
+   
+}
+
 if(!display)
 {
-  return <div></div>
+  return <div style={{display:"none"}}></div>
 }
 
   return (
@@ -75,27 +122,45 @@ if(!display)
                    width="100%"
                    display="flex"
                    flexDirection="column"
-                   gap="1rem">
+                   gap="1rem"
+                   onSubmit={handlesubmit}>
           <HStack>
              <Input 
+                  value={formstate.f_name}
                   name="f_name"
-                  placeholder="First Name"/>
+                  placeholder="First Name"
+                  onChange={handleChange}
+                  />
              <Input 
+                 value={formstate.l_name}
                   name="l_name"
-                  placeholder="Last Name"/>
+                  placeholder="Last Name"
+                  onChange={handleChange}
+                  />
           </HStack>
              <Input 
+                  value={formstate.email}
                   name="email"
-                  placeholder='Email Address'/>
+                  placeholder='Email Address'
+                  onChange={handleChange}
+                  />
           <Box>
              <Input 
+                  value={formstate.password}
                   name="password"
-                  placeholder="Password (6 to 12 characters)"/>
+                  placeholder="Password (6 to 12 characters)"
+                  onChange={handleChange}
+                  />
           </Box>
           <Box>
               <InputGroup>
                   <Input 
-                        placeholder='Phone Number (optional)'/>
+                        value={formstate.phone_No}
+                        name="phone_No"
+                        placeholder='Phone Number (optional)'
+                        onChange={handleChange}
+                        type="number"
+                        />
                   <InputRightElement children={<Tooltip 
                       backgroundColor="blackAlpha.900"
                       p="0.5rem 0.25rem 0.7rem 1rem"
@@ -115,7 +180,12 @@ if(!display)
             <Text as="b">Enter your birthdate to receive a free gift every year.</Text>
           </HStack>
           <HStack>
-          <Select name="month" placeholder="Month">
+          <Select 
+              value={formstate.month}
+              name="month" 
+              placeholder="Month" 
+              onChange={handleChange}>
+
               <option value="01">January</option>
               <option value="02">February</option>
               <option value="03">March</option>
@@ -129,7 +199,10 @@ if(!display)
               <option value="11">November</option>
               <option value="12">December</option>
           </Select> 
-          <Select name="day">
+          <Select 
+                  value={formstate.day}
+                  name="day"
+                  onChange={handleChange}>
                 <option>day</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
@@ -164,10 +237,19 @@ if(!display)
                 <option value="31">31</option>
           </Select>
           </HStack>
-          <Input placeholder="ZIP Code (to hear about store events near you)"/>
+          <Input 
+               name="zip"
+               value={formstate.zip}
+               placeholder="ZIP Code (to hear about store events near you)"
+               onChange={handleChange}
+          />
           <Box>
              <HStack>
-             <Checkbox defaultChecked={false}></Checkbox>
+             <Checkbox 
+                 name="flag"
+                 defaultChecked={false}
+                 onChange={handleChange}
+                 value={formstate.flag}></Checkbox>
                 <label>Keep me signed in</label>
                 <Tooltip 
                       backgroundColor="blackAlpha.900"
@@ -184,17 +266,16 @@ if(!display)
              </HStack>
           </Box>
           <Box display="flex">
-            <Input 
-                 type="submit"
-                 value="Join Now"
-                 color="white"
-                 backgroundColor="black"
-                 borderRadius={25}
-                 width={220}
-                 p={0}
-                 height="3.3rem"
-                 fontWeight={600}
-                 />
+                 <Button
+                     onClick={handlesubmit}
+                     color="white"
+                     backgroundColor="black"
+                     borderRadius={25}
+                     width={220}
+                     p={0}
+                     height="3.3rem"
+                     fontWeight={600}
+                     _hover={{backgroundColor:"green"}}>Join Now</Button>
           </Box>
         </FormControl>
         <VStack 

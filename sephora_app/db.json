@@ -1,0 +1,28 @@
+{
+  "auth": [
+    {
+      "f_name": "sp",
+      "l_name": "pp",
+      "email": "sp@gmail.com",
+      "password": "123456789582",
+      "phone_No": "987656565497",
+      "month": "05",
+      "day": "25",
+      "flag": true,
+      "zip": "321654",
+      "id": 1
+    },
+    {
+      "f_name": "sp",
+      "l_name": "pp",
+      "email": "sp1@gmail.com",
+      "password": "123456789582",
+      "phone_No": "987656565497",
+      "month": "12",
+      "day": "18",
+      "flag": true,
+      "zip": "654231",
+      "id": 2
+    }
+  ]
+}
