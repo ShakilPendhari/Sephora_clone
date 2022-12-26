@@ -1,20 +1,19 @@
 import React,{ Children, createContext, useState } from "react";
+import { Button, useColorMode } from "@chakra-ui/react"
+export const ThemeContext = createContext();
 
-export const authContext = createContext();
+const ThemeProvider = ({children})=>{
+    const { colorMode, toggleColorMode } = useColorMode();
+    const [toggle, settoggle ] = useState("light")
 
-const AuthContextProvider = ({children})=>{
-    const [ authState, setAuthState ] = React.useState({isAuth:false})
-    
-    const loginUser = ()=>{
-         setAuthState({isAuth:true})
+    const ChangeTheme = ()=>{
+       toggleColorMode();
+       colorMode === 'light' ? settoggle('Dark') : settoggle('Light');
     }
-    const logOutUser = ()=>{
-        setAuthState({isAuth:false})
-    }
 
-    return <authContext.Provider value={{authState, loginUser, logOutUser}}>
+    return <ThemeContext.Provider value={{ChangeTheme, toggle}}>
         {children}
-    </authContext.Provider>
+    </ThemeContext.Provider>
 }
 
-export default AuthContextProvider;
+export default ThemeProvider;

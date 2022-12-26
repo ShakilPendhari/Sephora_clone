@@ -4,12 +4,19 @@ import { CloseIcon, ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import "./SignIn.css"
 
+
+
 const SignIn = () => {
  const [ visibily, setVisibility ] = useState("password");
  const [display ,setDisplay ] = useState(true);
+ const [ data, setData ] = useState({
+    email:"",
+    password:"",
+    flag:false,
+ })
 
 const handleVisibility = ()=>{
-    // console.log(visibily)
+    
     if(visibily==="password")
     {
         setVisibility("text")
@@ -28,10 +35,26 @@ const handleSignIn = ()=>{
     }
 }
 
+const handleSubmit = (e)=>{
+   e.preventDefault();
+   console.log(data)
+}
+
+const handleChange = (e)=>{
+   const { name, value, type, checked} = e.target
+   const val =  type === "checkbox" ? checked : value
+    setData({...data, [name]:val});
+    console.log(e.target.value)
+}
+
+const handlebut = ()=>{
+    
+}
+
 
 if(!display)
 {
-    return <div></div>
+    return <div style={{display:"none"}}></div>
 }
   return (
     <div className='sign' >
@@ -54,11 +77,20 @@ if(!display)
                 textAlign='left'
                 fontSize={14}>Sign in or create an account to enjoy <strong> FREE standard shipping</strong> on all orders.</Text>
             <FormControl m="0rem 0rem 6rem">
-                <Input border = "2px solid" m="1rem 0rem 0.5rem 0rem" placeholder='Email Address*'/>
+                <Input 
+                      border = "2px solid" 
+                      m="1rem 0rem 0.5rem 0rem" placeholder='Email Address*'
+                        name="email"
+                        value={data.email}
+                        onChange={handleChange}
+                      />
                 <InputGroup>
                     <Input  
                          m="0.5rem 0rem 1rem 0rem"     placeholder='Password*'
                          type={visibily}
+                         name="password"
+                         value = {data.password}
+                         onChange={handleChange}
                      />
                     {
                         visibily==="password"? <InputRightElement 
@@ -75,7 +107,11 @@ if(!display)
                
                 <Flex justifyContent="space-between">
               <HStack>
-                 <Checkbox defaultChecked={false}></Checkbox>
+                 <Checkbox 
+                 defaultChecked={false}
+                 name="flag"
+                 value = {data.flag}
+                 onChange={handleChange}></Checkbox>
                  <label>Keep me signed in</label>
                  <Tooltip 
                       backgroundColor="blackAlpha.900"
@@ -98,6 +134,7 @@ if(!display)
             </Flex>
              <Flex m="1.5rem 0rem 2.5rem 0rem">
              <Button
+                   onClick={handleSubmit}
                    color="white" 
                    backgroundColor="black" variant="solid"
                    borderRadius="2rem"
@@ -113,7 +150,8 @@ if(!display)
               <Button 
                   border="2px solid rgb(10 10 10)" borderRadius="2rem"
                   width="12rem"
-                  _hover={{backgroundColor:"blue.300"}}>Create Account</Button>
+                  _hover={{backgroundColor:"blue.300"}}
+                  onClick={handlebut}>Create Account</Button>
             </Flex>
             </FormControl>
             
