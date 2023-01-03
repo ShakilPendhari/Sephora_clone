@@ -2,7 +2,12 @@ import React from 'react'
 import { Box, Flex, Image, Text, Grid, Divider, Center } from "@chakra-ui/react"
 import { Data } from "./Data"
 import SideBar from '../../Components/SideBar/SideBar'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const handleAPI = (data)=>{
+  axios.post(`http://localhost:8080/selData`,data).then((res)=>console.log("Data has been added")).catch((err)=>console.log(err))
+}
 
 const Home = () => {
     const navigate = useNavigate();
@@ -18,7 +23,7 @@ const Home = () => {
       {
         Data?.map((item)=>(
           <Flex 
-               onClick={()=>{navigate(`/cart/${item.id}`)}}
+               onClick={()=>{navigate(`/cart/${item.id}`); handleAPI(item)}}
                direction="column"
                borderRadius="2rem"
                p="1rem"

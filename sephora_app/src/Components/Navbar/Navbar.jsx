@@ -68,7 +68,7 @@ const Navbar = () =>  {
           <Box>
              <Link to="/">
                   <Image
-                src="https://document-export.canva.com/apFwU/DAFUtmapFwU/3/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWDTJW6UD%2F20221219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221219T033717Z&X-Amz-Expires=54675&X-Amz-Signature=b75d3afc12d6421f540f8f9f1c6e3313ee5d0271297b8c8b6dc7acc3310e0f1c&X-Amz-SignedHeaders=host&response-expires=Mon%2C%2019%20Dec%202022%2018%3A48%3A32%20GMT" 
+                src="/cp.png" 
                 alt="sephora"
                 width="45px"
                 height="45px"

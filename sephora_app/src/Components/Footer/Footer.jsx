@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Text, Flex, Divider, Heading, Input, Button, Image} from "@chakra-ui/react";
-import Section2, {Section1, RegionAndLanguage, SocialMedia } from './section';
+import Section2, {Section1, RegionAndLanguage, SocialMedia } from './Footer.section';
 import { FootSection1,  FootSection2, Region, } from './Data';
 
 const Footer = () => {

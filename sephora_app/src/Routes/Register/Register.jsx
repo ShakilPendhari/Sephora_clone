@@ -8,16 +8,16 @@ import { Link, useNavigate } from "react-router-dom"
 import "./Register.css"
 
 
-const AddData =(data)=>{
-    return fetch(`http://localhost:4040/auth`
-    ,{
-      method:"POST",
-      body:JSON.stringify(data),
-      headers:{
-         'Content-Type': 'application/json',
-      }
-    }).then((res)=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err));
-} 
+// const AddData =(data)=>{
+//     return fetch(`http://localhost:4040/auth`
+//     ,{
+//       method:"POST",
+//       body:JSON.stringify(data),
+//       headers:{
+//          'Content-Type': 'application/json',
+//       }
+//     }).then((res)=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err));
+// } 
 
 
 let intialValue = {
@@ -49,11 +49,11 @@ const handleReg = ()=>{
 
 const handlesubmit = (e)=>{
    e.preventDefault();
-   const { f_name, l_name, email, password, phone_No, month} = formstate;
-   if(f_name && l_name && email && password && phone_No && month)
-   {
-      AddData(formstate);
-   }
+   // const { f_name, l_name, email, password, phone_No, month} = formstate;
+   // if(f_name && l_name && email && password && phone_No && month)
+   // {
+   //    AddData(formstate);
+   // }
     
     setFormState(intialValue);
     navigate("/");
@@ -76,8 +76,8 @@ if(!display)
 
   return (
     <div style={{padding:"1rem"}} className="reg">
-    <Box className='box'>
-    <Flex justifyContent="space-between" p="1rem" 
+    <Box className='box' >
+    <Flex justifyContent="space-between" 
         borderBottom="0.1px solid rgba(173, 169, 169, 0.3)" alignItems="center" >
 
            <Flex flex={3} justifyContent="center">

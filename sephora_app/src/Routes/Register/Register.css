@@ -8,10 +8,11 @@
     top:0%;
     width:40%;
     height: 100vh;
+    vertical-align: auto;
     /* margin-left:30%; */
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding:1.5rem;
     z-index: 2000;
+    padding: 1rem;
     background-color: white;
 }
 
