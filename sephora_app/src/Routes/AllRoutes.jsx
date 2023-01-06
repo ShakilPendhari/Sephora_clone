@@ -4,7 +4,8 @@ import CartPage from '../Components/CartPage/CartPage'
 import Home from "./Home/Home"
 import Register from './Register/Register'
 import SignIn from './SignIn/SignIn'
-import SignUp from './SignUp/SignUp'
+import Checkout from '../Components/Checkout/Checkout'
+import PrivateRoute from '../Components/PrivateRoute'
 
 const Allroutes = () => {
   return (
@@ -13,8 +14,8 @@ const Allroutes = () => {
           <Route path="/" element={<Home/>}/>
           <Route path="/Register" element={<Register/>}/>
           <Route path="/signin" element={<SignIn/>}/>
-          <Route path="/signout" element={<SignUp/>}/>
-          <Route path="/cart/:id" element={<CartPage/>}/>
+          <Route path="/cart" element={<CartPage/>}/>
+          <Route path="/checkout_page" element={<PrivateRoute><Checkout/></PrivateRoute>}/>
       </Routes>
     </div>
   )

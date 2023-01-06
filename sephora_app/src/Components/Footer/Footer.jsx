@@ -7,6 +7,8 @@ const Footer = () => {
   return (
     <Box style={{ backgroundColor:"black",
                   color:"white",
+                  zIndex:"1000"
+                  
                  }}  
                   padding={["1rem 5rem", "1rem 5rem", "1rem 2rem",]}>
       <Flex 

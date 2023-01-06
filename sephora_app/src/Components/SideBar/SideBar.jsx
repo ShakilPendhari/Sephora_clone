@@ -1,10 +1,13 @@
-import { Box, Flex, Text, Divider, Heading } from '@chakra-ui/react'
+import { Box, Flex, Text, Heading } from '@chakra-ui/react'
 import React from 'react'
 import { SideBarInfo } from './Data';
 
 const SideBar = () => {
   return (
-    <Flex direction="column" textAlign="left" width="8rem">
+    <Flex 
+          direction="column" 
+          textAlign="left" 
+          width="8rem">
             <Heading as="h2" fontSize={16} m="1rem 0rem">New</Heading> 
             <hr bg="black"/>
             <Heading fontSize={22} m="1rem 0rem 0.7rem 0rem">New</Heading>

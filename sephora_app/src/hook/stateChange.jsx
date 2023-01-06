@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react';
+import { authContext } from '../Context/AuthContext';
+
 
 const UseStateChange = () => {
-    const [ value, setState ] = useState(1);
-   const  handleValue = (val)=> {
+    const { setCount, count } = useContext(authContext);
+    const [ v1, setState ] = useState(1);
+   const  handleValue = (val, price)=> {
+    setCount(count+val*price)
     setState(val);
    }
-   return [value, handleValue]
+   return [v1, handleValue]
 }
 
 export default UseStateChange

@@ -1,22 +1,51 @@
-import { Flex, Text, Select, Heading, Box ,Image, Divider, Center, Spacer, Button, Tooltip} from '@chakra-ui/react'
+import { Flex, Text, Select, Heading, Box ,Image, Divider, Center, Tooltip, } from '@chakra-ui/react'
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
+import { authContext } from '../../Context/AuthContext';
 import UseStateChange from '../../hook/stateChange';
+// import { useToast } from '@chakra-ui/react'
+import { HandleUpdate } from './cart.api';
 
 
 
 const CartMapData = (item) => {
+  const { setCount, count, setLoading, loading} = useContext(authContext);
+  // const [ loading1, setLoading1 ] = useState(false);
+  const [ updatedcount, setUpdatedCount ] = useState(Number(item.Price));
+  const [v, setV ] = useState(1);
 
-    const [ value, handleValue] = UseStateChange();
 
-    const Delete = (id)=>{
+ 
+useEffect(()=>{
+  // changeVal();
+  setCount(count+updatedcount);
+},[updatedcount,v]);
+
+const changeVal = (id,val)=>{
+  setLoading(true);
+  HandleUpdate(id,val).then((res)=>{console.log(res); setLoading(false) }).catch((err)=>{setLoading(false);console.log("err:",err)})
+}
+
+
+
+    const Delete = (id, Price)=>{
         item.changeLoading(true);
        fetch(`http://localhost:8080/selData/${id}`,{
         method:"delete"
-       }).then((res)=>item.changeLoading(false))
+       }).then((res)=>{item.changeLoading(false); 
+        // setCount(count-(Number(Price)*v1))
+      })
        .catch((error)=>{console.log("e:",error);item.changeLoading(false)})
     }
 
-  return (
-    <Flex key={item.id} 
+
+    if(loading)
+    {
+      return <div>Loading...</div>
+    }
+
+
+  return <> <Flex key={item.id} 
           justifyContent="space-around" 
           border="1px solid grey"
           borderRadius="0.3rem"
@@ -54,10 +83,9 @@ const CartMapData = (item) => {
       </Box>
       <Flex gap="1rem" alignItems="center">
         <Select
-          width="5rem"
-          value={value}
-          onChange={(e) => handleValue(e.target.value)}
-        >
+          width="5rem" 
+          value={item.count1}
+          onChange={(e) =>{ setV(e.target.value);setUpdatedCount(e.target.value*item.Price); changeVal(item.id,e.target.value)}}>
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -78,9 +106,12 @@ const CartMapData = (item) => {
           </Center>
         <Text style={{ color: "blue", 
                        cursor:"pointer" }} 
-              onClick={()=>{Delete(item.id); 
-                            item.setCount(item.count+2)}}> 
-           <Tooltip label='Remove form cart' placement='top'>
+              onClick={()=>{Delete(item.id, item.Price); 
+                            item.setCount(item.count+2)}}
+                            > 
+           <Tooltip label='Remove form cart' 
+                    placement='top'
+                    >
              Remove
            </Tooltip>
         </Text>
@@ -93,11 +124,15 @@ const CartMapData = (item) => {
           justifyContent="left"
           gap={{base:"11rem", sm:"11rem", md:"7.5rem"}}
            >
-      <Text >${item.Price * value}</Text>
+      <Text >${updatedcount*item.count1}</Text>
       <button>Change Method</button>
     </Flex>
+    
   </Flex>
-  )
-}
+
+  </>
+    
+  
+              }
 
 export default CartMapData

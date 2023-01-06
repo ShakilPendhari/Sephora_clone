@@ -1,8 +1,9 @@
 import { Flex, Heading, Text, Input, FormControl, Checkbox, HStack, Button, ButtonGroup, InputGroup, InputRightElement, Tooltip, Box } from '@chakra-ui/react'
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CloseIcon, ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import "./SignIn.css"
+import { authContext } from '../../Context/AuthContext';
 
 
 
@@ -13,7 +14,8 @@ const SignIn = () => {
     email:"",
     password:"",
     flag:false,
- })
+ });
+//  const { localStorage, setLocalStorage } = useContext(authContext);
 
 const handleVisibility = ()=>{
     
@@ -47,9 +49,9 @@ const handleChange = (e)=>{
     console.log(e.target.value)
 }
 
-const handlebut = ()=>{
+// useEffect(()=>{
     
-}
+// },[])
 
 
 if(!display)
@@ -151,7 +153,7 @@ if(!display)
                   border="2px solid rgb(10 10 10)" borderRadius="2rem"
                   width="12rem"
                   _hover={{backgroundColor:"blue.300"}}
-                  onClick={handlebut}>Create Account</Button>
+                  >Create Account</Button>
             </Flex>
             </FormControl>
             

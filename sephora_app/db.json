@@ -25,5 +25,46 @@
       "id": 2
     }
   ],
-  "selData": []
+  "selData": [
+    {
+      "id": "2",
+      "img": "https://www.sephora.com/productimages/sku/s2618981-main-zoom.jpg?imwidth=135",
+      "title": "only at sephora",
+      "company": "Natasha Denona",
+      "text": "Retro Glam Eyeshadow Palette",
+      "Price": "69.00",
+      "count": "243",
+      "count1": 1
+    },
+    {
+      "id": "3",
+      "img": "https://www.sephora.com/productimages/sku/s2599967-main-zoom.jpg?imwidth=135",
+      "title": "online only",
+      "company": "Natasha Denona",
+      "text": "Retro Glam Eyeshadow Palette",
+      "Price": "69.00",
+      "count": "243",
+      "count1": 1
+    },
+    {
+      "id": "4",
+      "img": "https://www.sephora.com/productimages/sku/s2611663-main-zoom.jpg?pb=2020-03-sephora-clean-2019&imwidth=135",
+      "title": "online only",
+      "company": "Natasha Denona",
+      "text": "Retro Glam Eyeshadow Palette",
+      "Price": "69.00",
+      "count": "243",
+      "count1": 1
+    },
+    {
+      "id": "17",
+      "img": "https://www.sephora.com/productimages/sku/s2641173-main-zoom.jpg?imwidth=135",
+      "title": "online only",
+      "company": "Natasha Denona",
+      "text": "Retro Glam Eyeshadow Palette",
+      "Price": "69.00",
+      "count": "243",
+      "count1": 1
+    }
+  ]
 }

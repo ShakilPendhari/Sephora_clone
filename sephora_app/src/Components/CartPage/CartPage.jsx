@@ -8,19 +8,23 @@ import {
   Divider,
   Spacer,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { authContext } from "../../Context/AuthContext";
 import StateChange from "../../hook/stateChange";
 import { cartData } from "./cart.api";
 import CartMapData from "./cartMapData";
+import CartSideBar from "./cartSideBar";
+// import data from "../../../db.json"
+// console.log(data)
 
 
 const CartPage = () => {
   const { id } = useParams();
+  const { loading, setLoading } = useContext(authContext);
   const [value, handleValue] = StateChange();
   const [state, setState] = useState([]);
   const [ count, setCount ] = useState(0)
-  const [ loading, setLoading ] = useState(false)
 
 
 
@@ -28,7 +32,8 @@ const CartPage = () => {
     cartData()
       .then((res) => setState(res))
       .catch((e) => console.log(e));
-  }, [value,count, loading]);
+
+  }, [value,loading]);
 
   if(loading){
     return <div>...Loading</div>
@@ -135,17 +140,25 @@ const CartPage = () => {
                            width="50%"
                            margin="auto"
                            borderRadius="2rem">Shop New Arrivals</Button> */}
-              {state?.map((item) => (
-                <CartMapData key={item.id} changeLoading={setLoading}  setCount={setCount} count={count} {...item}/>
-              ))}
+              {state?.map((item,i) => {
+                if(state.length-1<i)
+                {
+                 setCount(item.Price);
+                }
+                return  <CartMapData key={item.id} changeLoading={setLoading}  setCount={setCount} count={count} {...item}/>
+              }
+               
+              )}
             </Flex>
           </Flex>
         </Flex>
       </Flex>
       <Flex w="40%" 
-            border="1px solid gray" 
+            // border="1px solid gray" 
             h="80rem"
-            mt="3rem">
+            borderRadius="0.3rem"
+            mt="5.7rem">
+          <CartSideBar/>
             </Flex>
     </Flex>
   );
