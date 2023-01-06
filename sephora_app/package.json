@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.14",
+    "@chakra-ui/icons": "^2.0.15",
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.2.2",
     "framer-motion": "^7.10.2",
     "json-server": "^0.17.1",
     "react": "^18.2.0",
@@ -24,7 +25,8 @@
     "start": "react-scripts --max_old_space_size=4096 start",
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server":"json-server --watch db.json --port 8080"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "Homepage":"."
+  "homepage": "."
 }

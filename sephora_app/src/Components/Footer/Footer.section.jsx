@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Text, Flex, Image, VStack, Heading } from "@chakra-ui/react"
+import { Box, Text, Flex, Image } from "@chakra-ui/react"
 
 
 const Section2 = (props)=>{
     const { data } = props;
-    console.log(data)
+    // console.log(data)
     return <Box>
         {
             data?.map((item)=>(

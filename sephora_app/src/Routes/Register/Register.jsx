@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Heading, Flex, Select, HStack, FormControl, InputGroup, InputRightElement, VStack, Button } from "@chakra-ui/react";
 import { Box , Image, Text, Input, Checkbox, Tooltip} from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons';
@@ -6,36 +6,32 @@ import "./Register.css"
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom"
 import "./Register.css"
+import { authContext, intialValue } from '../../Context/AuthContext';
 
 
-const AddData =(data)=>{
-    return fetch(`http://localhost:4040/auth`
-    ,{
-      method:"POST",
-      body:JSON.stringify(data),
-      headers:{
-         'Content-Type': 'application/json',
-      }
-    }).then((res)=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err));
-} 
+// const AddData =(data)=>{
+//     return fetch(`http://localhost:4040/auth`
+//     ,{
+//       method:"POST",
+//       body:JSON.stringify(data),
+//       headers:{
+//          'Content-Type': 'application/json',
+//       }
+//     }).then((res)=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err));
+// } 
 
 
-let intialValue = {
-   f_name:"",
-   l_name:"",
-   email:"",
-   password:"",
-   phone_No:"",
-   month:"",
-   day:"",
-   flag:false,
-   zip:"",
-   }
+
 
 const Register = () => {
 const [ display, setDisplay] = useState(true);
-const [ formstate, setFormState] = useState(intialValue);
-const  navigate  = useNavigate()
+const  navigate  = useNavigate();
+const { localstorage,setlocalStorage, formstate, setFormState,count, setCount, authState, setAuthState } = useContext(authContext);
+
+useEffect(()=>{
+   // setlocalStorage(localStorage.setItem("key",JSON.stringify(formstate)))
+   //  setlocalStorage(JSON.parse(localStorage.getItem("key")) || {})
+},[localstorage,formstate])
 
 const handleReg = ()=>{
     if(display)
@@ -48,20 +44,19 @@ const handleReg = ()=>{
 }
 
 const handlesubmit = (e)=>{
-   e.preventDefault();
-   const { f_name, l_name, email, password, phone_No, month} = formstate;
-   if(f_name && l_name && email && password && phone_No && month)
-   {
-      AddData(formstate);
-   }
-    
-    setFormState(intialValue);
+     e.preventDefault();
+     setAuthState(!authState)
+     console.log(formstate);
+     setlocalStorage(localStorage.setItem("key",JSON.stringify(formstate)))
+     setCount(count+5)
+   //  setFormState(intialValue);
     navigate("/");
     setDisplay(!display);
-    localStorage.setItem("key",JSON.stringify(formstate))
+   
 }
 
 const handleChange = (e)=>{
+   setCount(count+5)
    console.log(e.target.value)
    const { value, name, type, checked } = e.target;
    const val = type==='checkbox' ?checked : value;
@@ -76,8 +71,8 @@ if(!display)
 
   return (
     <div style={{padding:"1rem"}} className="reg">
-    <Box className='box'>
-    <Flex justifyContent="space-between" p="1rem" 
+    <Box className='box' >
+    <Flex justifyContent="space-between" 
         borderBottom="0.1px solid rgba(173, 169, 169, 0.3)" alignItems="center" >
 
            <Flex flex={3} justifyContent="center">

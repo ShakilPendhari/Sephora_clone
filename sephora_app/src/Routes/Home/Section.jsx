@@ -16,9 +16,7 @@ import {
   function Rating({ rating, numReviews }) {
     return (
       <Box d="flex" alignItems="center">
-        {Array(5)
-          .fill('')
-          .map((_, i) => {
+        {Array(5).fill('').map((_, i) => {
             const roundedRating = Math.round(rating * 2) / 2;
             if (roundedRating - i >= 1) {
               return (
